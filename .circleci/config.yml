@@ -2,9 +2,15 @@ version: 2.1
 
 orbs:
   cypress: cypress-io/cypress@1.27.0
+  buildpulse: workshop64/buildpulse@0.4
 
 workflows:
   build:
     jobs:
       - cypress/run:
           command: npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results-[hash].xml"
+          post-steps:
+            - buildpulse/upload:
+                path: cypress/results
+                account-id: 68192324 # Replace this value with your BuildPulse account ID
+                repository-id: 264059655 # Replace this value with your BuildPulse repository ID
