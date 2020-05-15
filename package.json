@@ -1,0 +1,17 @@
+{
+  "name": "buildpulse-example-cypress",
+  "version": "1.0.0",
+  "description": "An example Cypress project to demonstrate connecting to BuildPulse for flaky test detection",
+  "repository": "https://github.com/Workshop64/buildpulse-example-cypress",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^4.5.0"
+  },
+  "scripts": {
+    "cypress:open": "cypress open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Rudolph",
+  "license": "MIT"
+}
