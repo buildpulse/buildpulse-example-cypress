@@ -6,4 +6,5 @@ orbs:
 workflows:
   build:
     jobs:
-      - cypress/run
+      - cypress/run:
+          command: npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results-[hash].xml"
