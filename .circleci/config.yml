@@ -2,9 +2,23 @@ version: 2.1
 
 orbs:
   cypress: cypress-io/cypress@1.21.0
+  buildpulse: workshop64/buildpulse@0.3
 
 workflows:
   build:
     jobs:
       - cypress/run:
           command: npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results-[hash].xml"
+          post-install:
+            - run:
+                name: Install pip # Used by BuildPulse uploader, but not present in Docker image used by Cypress orb
+                command: apt-get update && apt install -y python3-pip
+            - run:
+                name: Include aws cli in PATH # Used by BuildPulse uploader, but not in default PATH for Docker image used by Cypress orb
+                command: echo "export PATH=~/.local/bin:$PATH" >> $BASH_ENV
+            - buildpulse/setup # Set up BuildPulse connection *before* running the test suite
+          post-steps:
+            - buildpulse/upload:
+                path: cypress/results
+                account-id: 68192324 # Replace this value with your BuildPulse account ID
+                repository-id: 264059655 # Replace this value with your BuildPulse repository ID
