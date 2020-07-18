@@ -13,4 +13,4 @@ blocks:
             - checkout
             - sem-version node 12
             - npm install
-            - npx cypress run
+            - npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results-[hash].xml"
