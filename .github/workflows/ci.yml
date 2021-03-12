@@ -1,0 +1,12 @@
+name: CI
+
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
