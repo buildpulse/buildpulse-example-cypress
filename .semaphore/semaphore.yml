@@ -13,4 +13,13 @@ blocks:
             - checkout
             - sem-version node 12
             - npm install
-            - npx cypress run
+            - npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results-[hash].xml"
+      epilogue:
+        always: # Run these commands even when the tests fail
+          commands:
+            # Upload test results to BuildPulse for flaky test detection
+            - curl -fsSL https://github.com/buildpulse/test-reporter/releases/latest/download/test-reporter-linux-amd64 > ./buildpulse-test-reporter
+            - chmod +x ./buildpulse-test-reporter
+            - ./buildpulse-test-reporter submit cypress/results --account-id 68192324 --repository-id 264059655 # Replace IDs with your BuildPulse account ID and repository ID
+      secrets:
+        - name: buildpulse-credentials
