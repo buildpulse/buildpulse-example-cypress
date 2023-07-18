@@ -14,7 +14,7 @@ jobs:
           config-file: cypress-ci.json
       - name: Upload test results to BuildPulse for flaky test detection
         if: '!cancelled()' # Run this step even when the tests fail. Skip if the workflow is cancelled.
-        uses: Workshop64/buildpulse-action@master
+        uses: buildpulse/buildpulse-action@master
         with:
           account: 68192324 # Replace this value with your BuildPulse account ID
           repository: 264059655 # Replace this value with your BuildPulse repository ID
