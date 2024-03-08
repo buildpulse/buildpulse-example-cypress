@@ -1,6 +1,6 @@
 # BuildPulse Example Project: Cypress
 
-This is an example [Cypress](https://www.cypress.io) project demonstrating how to send test results to [BuildPulse](https://buildpulse.io) to help you detect, track, and [fix flaky tests](https://buildpulse.io/products/flaky-tests).
+This is an example [Cypress](https://www.cypress.io) project demonstrating how to send test results to [BuildPulse](https://buildpulse.io) to help you find and [fix flaky tests](https://buildpulse.io/products/flaky-tests).
 
 ## CircleCI Integration
 
